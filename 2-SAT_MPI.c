@@ -46,7 +46,7 @@ int main(int argc, char **argv){
 	
 	end = clock();
 	double diff = end - start;
-	printf(" %f  sec\n", diff / CLOCKS_PER_SEC );
+	printf("proecess %d >>> %f  sec\n", id, diff / CLOCKS_PER_SEC );
 	
 	return 0;
 }
