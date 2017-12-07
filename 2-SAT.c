@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdbool.h>
 
-int main(void){
+int main(int argc, char **argv){
 	int i,j,count=0;
 	for(i=0;i<(1<<16);i++){
 		bool A[16];
@@ -16,4 +16,11 @@ int main(void){
 		count++;
 	}
 	printf("%d",count);
+	
+	printf("%d\n",argc);
+	int k;
+	for(k=0; k<argc; k++)
+	{
+		printf("%s\t",argv[k]);
+	}
 }
