@@ -1,10 +1,14 @@
 #include<stdio.h>
 #include<stdbool.h>
 #include<mpi.h>
+#include<time.h>
 
 int main(int argc, char **argv){
 	
 	int k, id, p, global_solutions, solution, check_circut(int, int);
+	clock_t start, end;
+	
+	start = clock();
 	
 	MPI_Init(&argc, &argv);
 	MPI_Comm_rank(MPI_COMM_WORLD, &id);
@@ -39,6 +43,10 @@ int main(int argc, char **argv){
 		printf("There are %d different soulutions\n", global_solutions);
 	
 	MPI_Finalize();
+	
+	end = clock();
+	double diff = end - start;
+	printf(" %f  sec\n", diff / CLOCKS_PER_SEC );
 	
 	return 0;
 }
