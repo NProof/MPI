@@ -1,25 +1,34 @@
 #include <iostream>
 #include <vector>
+#include <cstring>
 #include <bitset>
 #include <ctime>
 #include <cstdio>
 
-#define MAXSIZE 500000005
+#define MAXSIZE 1000000050
 
-std::bitset< MAXSIZE > marks;
+bool marks[ MAXSIZE ];
 	
-void findUnderPrimes(int n){
-	marks.reset();
-	int k = 2;
+int findUnderPrimes(int n){
+	memset(marks, 0, n-1);
+	int primes = 0, k = 2;
 	while( k * k <= n ){
+		primes++;
 		for(int i =  k * k ; i <= n; i += k){
-			marks.set(i);
+			marks[i-2] = true;
 		}
 		do{
 			k++;
 		}
-		while(marks.test(k));
+		while(marks[k-2]);
 	}
+	do{
+		k++;
+		if(!marks[k-2])
+			primes++;
+	}
+	while(k <= n);
+	return primes;
 }
 
 int main(int argc, char **argv){
@@ -32,14 +41,14 @@ int main(int argc, char **argv){
 		for(int i = 1; i < argc; i++){
 			start = clock();
 			sscanf(argv[i], "%d", &x);
-			findUnderPrimes(x);
+			int primes = findUnderPrimes(x);
 //			for (std::vector<int>::iterator it = underPrimes.begin(); it != underPrimes.end(); ++it)
 //				std::cout << ' ' << *it;
 //			std::cout << '\n';
 			end = clock();
 			std::cout << "x : " << x <<
 			", time : " << ( (double) ( end - start ) / CLOCKS_PER_SEC ) << " seconds " <<
-			", size : " << x - marks.count() - 1 << std::endl;
+			", size : " << primes << std::endl;
 		}
 	}
 	return 0;
