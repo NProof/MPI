@@ -23,7 +23,7 @@ int main(int argc, char **argv){
 		if(id%6 == k){
 			for(int j=0; j<6; j++) {
 				if(j != k){
-					printf("%2d send to %2d when k is %d\n", id,(id/6)*6+j, k);
+					printf("%2d send to %2d when k is %d and *row*\n", id,(id/6)*6+j, k);
 					MPI_Send (distance, 1, MPI_FLOAT, (id/6)*6+j, 2*k+1, MPI_COMM_WORLD );
 				}
 			}
@@ -31,7 +31,7 @@ int main(int argc, char **argv){
 		if(id/6 == k){
 			for(int i=0; i<6; i++) {
 				if(i != k){
-					// printf("%2d send to %2d when k is %d\n", id, i*6+(id%6), k);
+					printf("%2d send to %2d when k is %d and *col*\n", id, i*6+(id%6), k);
 					MPI_Send (distance, 1, MPI_FLOAT, i*6+(id%6), 2*k, MPI_COMM_WORLD );
 				}
 			}
