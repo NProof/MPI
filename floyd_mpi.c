@@ -21,9 +21,9 @@ int main(int argc, char **argv){
 	// printf("* %d [ %d , %d ]\n", id, id/6, id%6);
 	
 	#define ROWS
+	#define COLS
+	#define COM
 	#define PRI
-	// #define COLS
-	// #define COM
 	
 	
 	for(int k=0; k<6; k++) {
